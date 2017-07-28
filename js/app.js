@@ -55,13 +55,23 @@
       $('.modal-trigger').leanModal();
     }
   };
-  var savebutton = $(":submit")
-  $.post("https:omdb-api.now.sh/","Star Wars" function(message))
-  .done(function(data){
-    console.log(data)
-  })
- savebutton.on("click", function(event){
-event.preventDefault()
+
+
+
+ $(":submit").on("click", function(event){
+   event.preventDefault()
+   var searchQuery = $("#search").val();
+   console.log("Search: " + searchQuery);
+   $.post("https:omdb-api.now.sh/?s=" + encodeURI(searchQuery), function(data){
+     for(let i = 0; i < data["Search"].length; i++){
+       var newMovie = {};
+       newMovie["id"] = data["Search"][i]["imdbID"];
+       newMovie["poster"] = data["Search"][i]["Poster"];
+       newMovie["title"] = data["Search"][i]["Title"];
+       newMovie["year"] = data["Search"][i]["Year"];
+       movies.push(newMovie);
+     }
+   })
  })
 
 
