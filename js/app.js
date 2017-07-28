@@ -55,6 +55,14 @@
       $('.modal-trigger').leanModal();
     }
   };
+  var savebutton = $(":submit")
+  $.post("https:omdb-api.now.sh/","Star Wars" function(message))
+  .done(function(data){
+    console.log(data)
+  })
+ savebutton.on("click", function(event){
+event.preventDefault()
+ })
 
-  // ADD YOUR CODE HERE
+
 })();
