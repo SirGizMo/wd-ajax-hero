@@ -71,7 +71,14 @@
        newMovie["year"] = data["Search"][i]["Year"];
        movies.push(newMovie);
      }
+        renderMovies();
+        //  console.log($('.btn'));
    })
+ })
+
+ $('.card-action > a').on('click', function(e) {
+   e.preventDefault();
+   console.log('hello')
  })
 
 
